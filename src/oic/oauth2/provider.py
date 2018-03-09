@@ -244,18 +244,22 @@ class Provider(object):
                     # redirect_uri
                     if rquery:
                         for key, vals in rquery.items():
-                            assert key in _query
+                            if key not in _query:
+                                raise AssertionError()
                             for val in vals:
-                                assert val in _query[key]
+                                if val not in _query[key]:
+                                    raise AssertionError()
                     # and vice versa, every query component in the redirect_uri
                     # must be registered
                     if _query:
                         if rquery is None:
                             raise ValueError
                         for key, vals in _query.items():
-                            assert key in rquery
+                            if key not in rquery:
+                                raise AssertionError()
                             for val in vals:
-                                assert val in rquery[key]
+                                if val not in rquery[key]:
+                                    raise AssertionError()
                     match = True
                     break
             if not match:
