@@ -13,8 +13,12 @@ The format is based on the [KeepAChangeLog] project.
 ### Added
 - [#496] Ability to specify additional supported scopes for oic.Provider
 
+### Fixed
+- [#508] JWT now uses verify keys for JWT verification
+
 [#494]: https://github/com/OpenIDC/issues/494
 [#496]: https://github.com/OpenIDC/pyoidc/issues/496
+[#508]: https://github.com/OpenIDC/pyoidc/issues/508
 
 ## 0.13.0 [2018-02-19]
 
