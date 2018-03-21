@@ -10,11 +10,15 @@ The format is based on the [KeepAChangeLog] project.
 ### Removed
 - [#494] Methods and functions deprecated in previous releases have been removed
 
+### Changed
+- [#507] Altered structure of client_db. It no longer stores mapping of ``registration_access_token`` to ``client_id``
+
 ### Added
 - [#496] Ability to specify additional supported scopes for oic.Provider
 
 [#494]: https://github/com/OpenIDC/issues/494
 [#496]: https://github.com/OpenIDC/pyoidc/issues/496
+[#507]: https://github.com/OpenIDC/pyoidc/issues/507
 
 ## 0.13.0 [2018-02-19]
 

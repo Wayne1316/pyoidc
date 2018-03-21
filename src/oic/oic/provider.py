@@ -1531,8 +1531,6 @@ class Provider(AProvider):
             "client_salt": rndstr(8)
         }
 
-        self.cdb[_rat] = client_id
-
         _cinfo = self.do_client_registration(request, client_id,
                                              ignore=["redirect_uris",
                                                      "policy_uri", "logo_uri",
@@ -1594,14 +1592,11 @@ class Provider(AProvider):
             return error_response('invalid_request')
         token = authn[len("Bearer "):]
 
-        try:
-            client_id = self.cdb[token]
-        except KeyError:
-            return Unauthorized()
-
-        # extra check
+        # Get client_id from request
         _info = parse_qs(request)
-        if not _info["client_id"][0] == client_id:
+        client_id = _info.get("client_id", [None])[0]
+
+        if self.cdb.get(client_id) is None or self.cdb.get(client_id)['registration_access_token'] != token:
             return Unauthorized()
 
         logger.debug("Client '%s' reads client info" % client_id)

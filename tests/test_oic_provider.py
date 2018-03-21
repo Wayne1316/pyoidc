@@ -1232,11 +1232,11 @@ class TestProvider(object):
         assert json.loads(resp.message) == {'error': 'invalid_request',
                                             'error_description': None}
 
-    def test_read_registration_wrong_authn(self):
+    def test_read_registration_missing_clientid(self):
         resp = self.provider.read_registration('Bearer wrong string', 'request')
         assert resp.status_code == 401
 
-    def test_read_registration_wrong_cid(self):
+    def test_read_registration_wrong_rat(self):
         rr = RegistrationRequest(operation="register",
                                  redirect_uris=["http://example.org/new"],
                                  response_types=["code"])
