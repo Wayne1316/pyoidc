@@ -883,9 +883,10 @@ class Client(oauth2.Client):
 
         try:
             resp = self.http_request(path, method, data=body, **h_args)
+            resp.text = resp.text.encode('utf8)
         except oauth2.exception.MissingRequiredAttribute:
             raise
-
+                        
         if resp.status_code == 200:
             if "application/json" in resp.headers["content-type"]:
                 sformat = "json"
