@@ -45,6 +45,6 @@ def sanitize(potentially_sensitive):
             redacted(k.lower(), v) for k, v in potentially_sensitive.items())
     else:
         if not isinstance(potentially_sensitive, six.string_types):
-            potentially_sensitive = str(potentially_sensitive)
+            potentially_sensitive = unicode(potentially_sensitive)
         return SANITIZE_REGEX.sub(r'\1{}'.format(REPLACEMENT),
                                   potentially_sensitive)
