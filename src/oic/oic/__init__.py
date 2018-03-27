@@ -883,7 +883,6 @@ class Client(oauth2.Client):
 
         try:
             resp = self.http_request(path, method, data=body, **h_args)
-            resp.text = resp.text.encode('utf8')
         except oauth2.exception.MissingRequiredAttribute:
             raise
                         
